@@ -7,11 +7,12 @@
 <h3>Status</h3>
   <% if @topic.status == "requested" %>
     <p>No one is writing about this yet.</p>
-
-    <%= form_tag(posts_path(@topic.post)) do %>
-      <%= hidden_field_tag :topic_id, params[:id] %>
-      <%= hidden_field_tag :writer_id, current_user.id %>
-      <%= submit_tag "Sign up to write a post on this topic!" %><br><br>
+    <% if logged_in? %>
+      <%= form_tag(posts_path(@topic.post)) do %>
+        <%= hidden_field_tag :topic_id, params[:id] %>
+        <%= hidden_field_tag :writer_id, current_user.id %>
+        <%= submit_tag "Sign up to write a post on this topic!" %><br><br>
+      <% end %>
     <% end %>
 
   <% elsif @topic.status == "pending" %>

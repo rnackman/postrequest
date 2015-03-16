@@ -11,15 +11,25 @@
     </div>
   <% end %>
 
-  <div class="actions">
-      <%= f.label :name %>
-      <%= f.text_field :name %><br>
-      <%= f.label :notes %>
-      <%= f.text_area :notes %><br>
+  <div class="field form-group">
+    <%= f.label :name, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= f.text_field :name, class: 'form-control' %><br>
+    </div>
+  </div>
+  <div class="field form-group">
+    <%= f.label :notes, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= f.text_area :notes, class: 'form-control' %><br>
+    </div>
+  </div>
+  <div class="actions form-group">
+    <div class="col-sm-offset-2 col-sm-10">
       <% if @topic.new_record? %>
         <%= f.submit "Request Topic"%>
       <% else %>
         <%= f.submit "Edit Request" %>
       <% end %>
+    </div>
   </div>
 <% end %>

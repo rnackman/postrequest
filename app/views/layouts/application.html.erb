@@ -1,15 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Postrequest</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <title>POST /request</title>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<%= render 'layouts/header' %>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <div id="main-container" class="container">
+    <div class="row">
+      <%= render 'layouts/header' %>
+    </div>
 
-<%= yield %>
-
+  <%= yield %>
+  </div>
 </body>
 </html>

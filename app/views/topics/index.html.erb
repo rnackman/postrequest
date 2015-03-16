@@ -1,8 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<h1>All Topics</h1>
+<div class="row">
+  <h1>All Topics</h1>
+</div>
 
-<table>
+<div class="row">
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Topic</th>
@@ -10,6 +13,8 @@
       <th>Role</th>
       <th>Date requested</th>
       <th>Status</th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -42,15 +47,14 @@
           <td><%= link_to 'Delete', topic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
       </tr>
-      <tr>
-        
-      </tr>
     <% end %>
   </tbody>
 </table>
+</div>
 
-<br>
+<div class="row">
 <% if logged_in? %>
 <%= link_to 'Request a new topic!', new_topic_path %> |
 <%= link_to 'See all your requests & posts', user_path(current_user) %>
 <% end %>
+</div>

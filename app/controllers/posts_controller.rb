@@ -15,9 +15,10 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    set_topic
     @post = Post.new(topic_id: params[:topic_id], writer_id: params[:writer_id], status: "pending")
-
+    @post.save
+    
+    set_topic
     @topic.status = "pending"
     @topic.claimed_at = Date.today
     @topic.save
