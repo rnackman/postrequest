@@ -1,0 +1,22 @@
+<%= form_for(@post) do |f| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+      Please provide a link to the finished post:
+      <%= f.fields_for @post.topic do |topic_form| %>
+        <%= topic_form.url_field :link %>
+      <% end %>
+      <input type="hidden" id="post_status" name="post[status]" value="completed" />
+      <%= f.submit 'Thank you!' %>
+  </div>
+<% end %>
