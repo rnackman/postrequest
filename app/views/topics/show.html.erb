@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1><%= @topic.name %></h1>
+<div class="page-header"><h1><%= @topic.name %></h1></div>
 <h2><%= "Requested by #{@topic.requester.name} on #{@topic.created_at.to_date.strftime('%B %d, %Y')}" %></h2>
 <p><%= @topic.notes %></p>
 

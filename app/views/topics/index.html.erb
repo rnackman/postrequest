@@ -1,7 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <div class="row">
-  <h1>All Topics</h1>
+  <div class="page-header">
+    <h1>All Topics</h1>
+  </div>
 </div>
 
 <div class="row">
@@ -27,18 +29,18 @@
         <td><%= topic.created_at.to_date.strftime('%B %d, %Y') %></td>
         
         <% if topic.status == "requested" %>
-          <td>No one is writing about this yet.</td>
+          <td><span class="label label-danger">No one is writing about this yet.</span></td>
         <% elsif topic.status == "pending" %>
           <% if logged_in? && topic.writer.id == current_user.id %>
-            <td><%= "You are working on this!" %></td>
+            <td><span class="label label-warning"><%= "You are working on this!" %></span></td>
           <% else %>
-            <td><%= "#{topic.writer.name} is working on this!" %></td>
+            <td><span class="label label-warning"><%= "#{topic.writer.name} is working on this!" %></span></td>
           <% end %>
         <% elsif topic.status == "completed" %>
           <% if logged_in? && topic.writer.id == current_user.id %>
-            <td><%= "You wrote this!"%></td>
+            <td><span class="label label-success"><%= "You wrote this!"%></span></td>
           <% else %>
-            <td><%= "#{topic.writer.name} wrote this!" %>
+            <td><span class="label label-success"><%= "#{topic.writer.name} wrote this!" %></span></td>
           <% end %>
         <% end %>
 
@@ -52,9 +54,12 @@
 </table>
 </div>
 
-<div class="row">
-<% if logged_in? %>
-<%= link_to 'Request a new topic!', new_topic_path %> |
-<%= link_to 'See all your requests & posts', user_path(current_user) %>
-<% end %>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <ul class="nav navbar-nav">
+    <% if logged_in? %>
+      <li><%= link_to 'Request a new topic!', new_topic_path %></li>
+      <li><%= link_to 'See all your requests & posts', user_path(current_user) %></li>
+    <% end %>
+  </ul>
 </div>
