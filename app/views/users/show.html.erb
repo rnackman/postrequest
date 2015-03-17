@@ -41,4 +41,11 @@
   </div>
 </div>
 
-<%= link_to 'Back to All Topics', root_path %>
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <ul class="nav navbar-nav">
+    <% if logged_in? %>
+      <li><%= link_to 'Request a new topic!', new_topic_path %></li>
+      <li><%= link_to 'Back to All Topics', root_path %></li>
+    <% end %>
+  </ul>
+</div>
