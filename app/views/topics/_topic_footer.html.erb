@@ -1,0 +1,5 @@
+<%= link_to 'Back', topics_path %>
+<% if logged_in? && @topic.requester.id == current_user.id %>
+  | <%= link_to 'Edit', edit_topic_path(@topic) %>
+  | <%= link_to 'Delete', @topic, method: :delete, data: { confirm: 'Are you sure you want to delete this topic?'}%>
+<% end %>

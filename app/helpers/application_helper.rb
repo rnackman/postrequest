@@ -2,9 +2,10 @@ module ApplicationHelper
 
   def login_or_logout
     if logged_in?
-      "<li><a>Hello, #{current_user.name}!</a></li> <li>#{link_to "Log Out", logout_path}</li>".html_safe
+      "<li><a href='#'>Hello, #{current_user.name}!</a></li><li>#{link_to 'Your Topics & Posts', user_path(current_user)}</li><li>#{link_to "Log Out", logout_path}</li>".html_safe
     else
-      "#{link_to "Sign Up", signup_path} #{link_to "Log In", login_path} Log in to edit, delete, or claim your topics!".html_safe
+      "<li>#{link_to "Sign Up", signup_path}</li><li>#{link_to "Log In", login_path}</li>".html_safe
     end
   end
+
 end

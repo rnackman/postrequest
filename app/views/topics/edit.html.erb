@@ -1,8 +1,12 @@
-<h1>Editing Topic</h1>
-
-<%= render 'form' %>
-
-<div class="row">
-<%= link_to 'Show', @topic %> |
-<%= link_to 'Back', topics_path %>
+<div class="page-header">
+  <h2>Editing Topic</h2>
+</div>
+<div class="container">
+  <%= render 'form' %>
+  <div class="row">
+    <%= link_to 'Back', topics_path %>
+    <% if logged_in? && @topic.requester.id == current_user.id %>
+      | <%= link_to 'Delete', @topic, method: :delete, data: { confirm: 'Are you sure you want to delete this topic?'}%>
+    <% end %>
+  </div>
 </div>

@@ -7,10 +7,8 @@
     <h3 class="panel-title"><%="#{@name} Requests" %></h3>
   </div>
   <div class="panel-body">
-    <% if @requested_posts %>
-      <% @requested_posts.each do |topic| %>
-        <%= link_to "#{topic.name}", topic_path %><br>
-      <% end %>
+    <% @requested_posts.each do |topic| %>
+      <%= link_to "#{topic.name}", topic_path %><br>
     <% end %>
   </div>
 </div>
@@ -20,10 +18,8 @@
     <h3 class="panel-title"><%="#{@name} Posts in Progress" %></h3>
   </div>
   <div class="panel-body">
-    <% if @claimed_posts %>
-      <% @completed_posts.each do |post| %>
-        <%= link_to "#{post.topic.name}", topic_path(post.topic.id) %><br>
-      <% end %>
+    <% @claimed_posts.each do |post| %>
+      <%= link_to "#{post.topic.name}", topic_path(post.topic.id) %><br>
     <% end %>
   </div>
 </div>
@@ -33,19 +29,14 @@
     <h3 class="panel-title"><%="#{@name} Completed Posts" %></h3>
   </div>
   <div class="panel-body">
-    <% if @completed_posts %>
-      <% @completed_posts.each do |post| %>
-        <%= link_to "#{post.topic.name}", topic_path(post.topic.id) %><br>
-      <% end %>
+    <% @completed_posts.each do |post| %>
+      <%= link_to "#{post.topic.name}", topic_path(post.topic.id) %><br>
     <% end %>
   </div>
 </div>
 
-<nav class="navbar navbar-default navbar-fixed-bottom">
-  <ul class="nav navbar-nav">
-    <% if logged_in? %>
-      <li><%= link_to 'Request a new topic!', new_topic_path %></li>
-      <li><%= link_to 'Back to All Topics', root_path %></li>
-    <% end %>
-  </ul>
+<div class="container">
+  <div class="row">
+    <%= render 'layouts/index_buttons' %>
+  </div>
 </div>

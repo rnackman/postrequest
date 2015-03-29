@@ -13,12 +13,52 @@
 <body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
-  <div id="main-container" class="container">
-    <div class="row">
-      <%= render 'layouts/header' %>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <%= login_or_logout %>
+        </ul>
+      </div>
     </div>
+  </nav>
 
-  <%= yield %>
+  <div class="jumbotron">
+    <div class="container">
+      <div class="row">
+      <h1><a href="/">POST /request</a></h1>
+      </div>
+      <div class="row">
+        <h3>Have a great idea for a blog post?</h3>
+        <h4>Add a topic to the request list and let one of your friends take on the challenge.</h4>
+      </div>
+      <div class="row">
+        <h3>Need a great idea for a blog post topic?</h3> 
+        <h4>Take a look at what your friends have requested. If a topic piques your interest, let everyone know you're working on it!</h4>
+      </div>
+    </div>
+  </div>
+
+  <div id="main-container" class="container">
+    <div class="row"><br></div>
+    <% if notice != nil %>
+      <div class="alert alert-success">
+        <p id="notice"><%= notice %></p>
+      </div>
+    <% end %>
+
+    <%= yield %>
+
+    <nav class="navbar navbar navbar-fixed-bottom">
+    </nav>
   </div>
 </body>
 </html>

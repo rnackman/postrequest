@@ -5,18 +5,24 @@ class TopicsController < ApplicationController
   # GET /topics.json
   def index
     @topics = Topic.all
-  end
 
-  def requested
-    @topics = Topic.where(status: "requested")
-  end
-
-  def pending
-    @topics = Topic.where(status: "pending")
-  end
-
-  def completed
-    @topics = Topic.where(status: "completed")
+    # def topic_status
+    #   if topic.status == "requested"
+    #     "<td><span class='label label-danger'>No one is writing about this yet.</span></td>".html_safe
+    #   elsif topic.status == "pending"
+    #     if logged_in? && topic.writer.id == current_user.id
+    #       "<td><span class='label label-warning'>You are working on this!</span></td>".html_safe
+    #     else
+    #       "<td><span class='label label-warning'>#{topic.writer.name} is working on this!</span></td>".html_safe
+    #     end
+    #   elsif topic.status == "completed"
+    #     if logged_in? && topic.writer.id == current_user.id
+    #       "<td><span class='label label-success'>You wrote this!</span></td>".html_safe
+    #     else
+    #       "<td><span class='label label-success'>#{topic.writer.name} wrote this!</span></td>".html_safe
+    #     end
+    #   end
+    # end
   end
 
   # GET /topics/1
@@ -42,7 +48,7 @@ class TopicsController < ApplicationController
         @topic.requester_id = current_user.id
         @topic.status = "requested"
         @topic.save
-        format.html { redirect_to @topic, notice: 'Thanks for suggesting a topic!' }
+        format.html { redirect_to root_path, notice: 'Thanks for suggesting a topic!' }
         format.json { render :show, status: :created, location: @topic }
       else
         format.html { render :new }

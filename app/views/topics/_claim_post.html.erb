@@ -1,0 +1,35 @@
+<% if @topic.status == "requested" %>
+  <p>No one is writing about this yet.</p>
+
+  <% if logged_in? %>
+    <%= form_tag(posts_path(@topic.post)) do %>
+      <%= hidden_field_tag :topic_id, params[:id] %>
+      <%= hidden_field_tag :writer_id, current_user.id %>
+      <%= submit_tag "Sign up to write a post on this topic!" %><br><br>
+    <% end %>
+  <% end %>
+
+<% elsif @topic.status == "pending" %>
+  <% if logged_in? && @topic.writer.id == current_user.id %>
+    <p><%= "You are working on this post." %></p>
+    <div class="row"><br></div>
+    <div id="container">
+      <button class="btn btn-info">
+        <%= link_to 'Finished this post? Submit the link!', edit_post_path(@topic.post) %>
+      </button>
+      <button class="btn btn-info">
+        <%= link_to 'Changed your mind? Remove this from your list.', post_path(@topic.post), method: :delete, data: {confirm: 'Are you sure you want to stop working on this post?'}%>
+      </button>
+    </div>
+  <% else %>
+  <p><%= "#{@topic.writer.name} started working on this post on #{@topic.claimed_at.to_date.strftime('%B %d, %Y')}." %></p>
+  <% end %>
+
+<% elsif @topic.status == "completed" %>
+  <% if logged_in? && @topic.writer.id == current_user.id %>
+    <p><%= "You wrote this post!" %></p>
+  <% else %>
+    <p><%= "#{@topic.writer.name} wrote this post on #{@topic.completed_at.to_date.strftime('%B %d, %Y')}!" %></p>
+  <% end %>
+    <p><a class="btn btn-info" href="<%= @topic.link %>">Read it</a></p>
+<% end %>
